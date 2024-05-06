@@ -7,7 +7,6 @@ using namespace std;
 bool captureImage = false; // Flag to indicate whether to capture an image
 
 void onMouse(int event, int x, int y, int flags, void* userdata) {
-    //cout << "Capturing..."<<endl;
     if (event == EVENT_LBUTTONDOWN) {
         // Check if the click is within the region of the button
         if (x >= 300 && x <= 410 && y >= 390 && y <= 430) {
@@ -46,6 +45,11 @@ int main() {
 
         // Check for the escape key (ASCII value 27) to exit the loop
         if (waitKey(25) == 27) {
+            break;
+        }
+        // Check if the window is closed by the user
+        if (getWindowProperty("Display window", WND_PROP_VISIBLE) < 1) {
+            cout << "Window closed. Exiting..." << endl;
             break;
         }
     }
